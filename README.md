@@ -1,4 +1,6 @@
-# Procedural-Planets-in-Unity
+
+
+## Procedural-Planets-in-Unity
 Test project for creating procedural (currently earth-like) planets using Unity 2018 (can be updated I guess). 
 
 Packages in use are :
@@ -19,3 +21,9 @@ extremely unoptimised and slow.
 
 Thanks for using my work,
 >TheSlippyPenguin
+
+### Screenshots
+![](https://i.imgur.com/HLA0Pxt.jpg)
+![](https://i.imgur.com/Tqf3xIa.png)
+![](https://i.imgur.com/6YfivX3.jpg)
+
