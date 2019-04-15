@@ -1,26 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEditor.Presets;
 
 
 //
 // DISCLAIMER
 //
 //This is really messy but working code, feel free to upgrade and modify
-//Credit for all scripts except this one, CustomRNGEditor.cs and Rotator.cs goes to Sebastian Lague
+//Credit for all scripts except this one, CustomRNGEditor.cs and Rotator.cs goes to Sebastian Lague and libnoise.net
 //I'm not an experienced developer so don't throw your keyboard out of the window if some code sucks, I'm 15.
 //Have fun, thx for downloading.
 //
 
-
-
-
 public class RNG : MonoBehaviour
 {
-    Planet planet;
+    [HideInInspector()]
+    public Planet planet;
     ShapeSettings shape;
+    ColourSettings colour;
+
     NoiseSettings noiseSettings0;
     NoiseSettings noiseSettings1;
+
 
     //0 is Simple Noise, 1 is Ridgid Noise. We are only using 2 layers otherwise it would be too heavy
 
@@ -35,11 +35,13 @@ public class RNG : MonoBehaviour
     [Header("X is min. value, Y is max.")]
     //public Vector2 planetRadiusMinMax = new Vector2(2.4f, 3.7f);
 
+
     [Header("Simple Noise Attributes")]
     public Vector2 simpleStrengthMinMax = new Vector2(0.01f, 0.1f);
     public Vector2 simpleBaseRoughnessMinMax = new Vector2(0.7f, 2f);
     public Vector2 simpleRoughnessMinMax = new Vector2(2.2f, 3.2f);
     public Vector2 simpleCentreMinMax = new Vector2(0, 20);
+
 
     [Header("Ridgid Noise Attributes")]
     public Vector2 ridgidStrengthMinMax = new Vector2(0.6f, 1f);
@@ -52,19 +54,20 @@ public class RNG : MonoBehaviour
 
 
 
-
-
-
     private void Start()
     {
         planet = GetComponent<Planet>();
         shape = planet.shapeSettings;
+        colour = planet.colourSettings;
         noiseSettings0 = shape.noiseLayers[0].noiseSettings;
         noiseSettings1 = shape.noiseLayers[1].noiseSettings;
+
+       
+
     }
 
 
-    public void UpdateNoise()
+    public void Randomise()
     {
         //shape.planetRadius = Random.Range(planetRadiusMinMax.x, planetRadiusMinMax.y);
 
@@ -113,5 +116,47 @@ public class RNG : MonoBehaviour
 
         planet.GeneratePlanet();
         
+    }
+
+    [Header("Colour Presets")]
+    public PresetsEnum presetsReference;
+    public enum PresetsEnum
+    {
+
+        Earth = 0,
+
+        Arctic = 1
+
+    };
+
+    public bool autoRegenerateOnPresetModification = false;
+    public bool lockNoiseUpdate = true;
+
+    //add new presets here
+    [SerializeField]
+    Preset[] presets;
+    
+
+    //add new conditions for new presets here
+    public void ApplyPreset()
+    {
+        for (int i = 0; i < presets.Length; i++)
+        {
+            if (i == (int)presetsReference)
+            {
+                presets[i].ApplyTo(colour);
+                if (autoRegenerateOnPresetModification && lockNoiseUpdate == false)
+                {
+                    Randomise();
+                    Debug.Log("Planet Generated");
+                }
+                else if (autoRegenerateOnPresetModification && lockNoiseUpdate)
+                {
+                    planet.GenerateColours();
+                    Debug.Log("Colours updated");
+                }
+            }
+        }
+       
     }
 }

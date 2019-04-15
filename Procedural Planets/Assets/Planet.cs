@@ -97,7 +97,7 @@ public class Planet : MonoBehaviour
         colourGenerator.UpdateElevation(shapeGenerator.elevationMinMax);
     }
 
-    void GenerateColours()
+    public void GenerateColours()
     {
         colourGenerator.UpdateColours();
         for (int i = 0; i < 6; i++)
