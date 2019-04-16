@@ -1,0 +1,2 @@
+C:\Users\Damien\Documents\GitHub\Procedural-Planets-in-Unity\Procedural Planets\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Damien\Documents\GitHub\Procedural-Planets-in-Unity\Procedural Planets\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

@@ -64,6 +64,8 @@
     <Compile Include="Assets\ColourGenerator.cs" />
     <Compile Include="Assets\ColourSettings.cs" />
     <Compile Include="Assets\ConditionalHideAttribute.cs" />
+    <Compile Include="Assets\FauxGravityAttractor.cs" />
+    <Compile Include="Assets\FauxGravityBody.cs" />
     <Compile Include="Assets\INoiseFilter.cs" />
     <Compile Include="Assets\MinMax.cs" />
     <Compile Include="Assets\Noise.cs" />
@@ -77,6 +79,8 @@
     <Compile Include="Assets\ShapeSettings.cs" />
     <Compile Include="Assets\SimpleNoiseFilter.cs" />
     <Compile Include="Assets\TerrainFace.cs" />
+    <Compile Include="Assets\TestSphereController.cs" />
+    <Compile Include="Assets\UpdateMeshCollider.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

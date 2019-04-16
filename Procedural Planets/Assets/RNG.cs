@@ -16,6 +16,8 @@ public class RNG : MonoBehaviour
 {
     [HideInInspector()]
     public Planet planet;
+
+    public UpdateMeshCollider[] meshUpdaters;
     ShapeSettings shape;
     ColourSettings colour;
 
@@ -116,6 +118,11 @@ public class RNG : MonoBehaviour
 
 
         planet.GeneratePlanet();
+
+        foreach (UpdateMeshCollider meshUpdater in meshUpdaters)
+        {
+            meshUpdater.RecalculateBounds();
+        }
         
     }
 
@@ -146,12 +153,12 @@ public class RNG : MonoBehaviour
             if (i == (int)presetsReference)
             {
                 presets[i].ApplyTo(colour);
-                if (autoRegenerateOnPresetModification && lockNoiseUpdate == false)
+                if (autoRegenerateOnPresetModification && !lockNoiseUpdate)
                 {
                     Randomise();
                     Debug.Log("Planet Generated");
                 }
-                else if (autoRegenerateOnPresetModification && lockNoiseUpdate)
+                else if (!autoRegenerateOnPresetModification && lockNoiseUpdate)
                 {
                     planet.GenerateColours();
                     Debug.Log("Colours updated");
