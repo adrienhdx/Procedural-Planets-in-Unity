@@ -127,20 +127,23 @@ public class RNG : MonoBehaviour
     }
 
     [Header("Colour Presets")]
-    public PresetsEnum presetsReference;
+    public PresetsEnum presetSelector;
     public enum PresetsEnum
     {
 
-        Earth = 0,
+        
+        Earthlike = 0,
 
-        Arctic = 1
+        Arctic = 1,
+
+        Venuslike = 2
 
     };
 
     public bool autoRegenerateOnPresetModification = false;
     public bool lockNoiseUpdate = true;
 
-    //add new presets here
+    
     [SerializeField]
     Preset[] presets;
     
@@ -150,7 +153,7 @@ public class RNG : MonoBehaviour
     {
         for (int i = 0; i < presets.Length; i++)
         {
-            if (i == (int)presetsReference)
+            if (i == (int)presetSelector)
             {
                 presets[i].ApplyTo(colour);
                 if (autoRegenerateOnPresetModification && !lockNoiseUpdate)
