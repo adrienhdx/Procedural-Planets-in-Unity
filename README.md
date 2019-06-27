@@ -3,6 +3,8 @@
 ## Procedural-Planets-in-Unity
 Test project for creating procedural (currently earth-like) planets using Unity 2018 (can be updated I guess). 
 
+Send me a message on Discord : PingouinGlissant#7123
+
 Packages in use are :
 - Lightweight Render Pipeline (latest)
 - Shadergraph (latest)
