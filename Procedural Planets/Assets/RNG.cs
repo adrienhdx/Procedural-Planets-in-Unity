@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using UnityEditor.Presets;
 
 
@@ -7,9 +6,9 @@ using UnityEditor.Presets;
 // DISCLAIMER
 //
 //This is really messy but working code, feel free to upgrade and modify
-//Credit for all scripts except this one, CustomRNGEditor.cs and Rotator.cs goes to Sebastian Lague and libnoise.net
+//Made by Adrien Houdoux with the help of Sebastian Lague and libnoise.net.
 //I'm not an experienced developer so don't throw your keyboard out of the window if some code sucks, I'm 15.
-//Have fun, thx for downloading.
+//Thanks for trying it out
 //
 
 public class RNG : MonoBehaviour
@@ -38,22 +37,21 @@ public class RNG : MonoBehaviour
     [Header("X is min. value, Y is max.")]
     //public Vector2 planetRadiusMinMax = new Vector2(2.4f, 3.7f);
 
-
     [Header("Simple Noise Attributes")]
-    public Vector2 simpleStrengthMinMax = new Vector2(0.01f, 0.1f);
-    public Vector2 simpleBaseRoughnessMinMax = new Vector2(0.7f, 2f);
-    public Vector2 simpleRoughnessMinMax = new Vector2(2.2f, 3.2f);
-    public Vector2 simpleCentreMinMax = new Vector2(0, 20);
+    public Vector2 s_Strength = new Vector2(0.01f, 0.1f);
+    public Vector2 s_BaseRoughness = new Vector2(0.7f, 2f);
+    public Vector2 s_Roughness = new Vector2(2.2f, 3.2f);
+    public Vector2 s_Centre = new Vector2(0, 20);
 
 
     [Header("Ridgid Noise Attributes")]
-    public Vector2 ridgidStrengthMinMax = new Vector2(0.6f, 1f);
-    public Vector2 ridgidBaseRoughnessMinMax = new Vector2(0.1f, 4.5f);
-    public Vector2 ridgidRoughnessMinMax = new Vector2(0, 1);
-    public Vector2 ridgidPersistenceMinMax = new Vector2(.3f, .8f);
-    public Vector2 ridgidCentreMinMax = new Vector2(0, 20);
-    public Vector2 ridgidMinimalValueMinMax = new Vector2(0, 2);
-    public Vector2 ridgidWeightMultiplierMinMax = new Vector2(0.3f, 2.5f);
+    public Vector2 r_Strength = new Vector2(0.6f, 1f);
+    public Vector2 r_BaseRoughness = new Vector2(0.1f, 4.5f);
+    public Vector2 r_Roughness = new Vector2(0, 1);
+    public Vector2 r_Persistence = new Vector2(.3f, .8f);
+    public Vector2 r_Centre = new Vector2(0, 20);
+    public Vector2 r_MinimalValue = new Vector2(0, 2);
+    public Vector2 r_WeightMultiplier = new Vector2(0.3f, 2.5f);
 
 
 
@@ -101,20 +99,20 @@ public class RNG : MonoBehaviour
 
 
         //Simple noise RNG (highly unoptimised)
-        noiseSettings0.simpleNoiseSettings.strength = Random.Range(simpleStrengthMinMax.x, simpleStrengthMinMax.y);
-        noiseSettings0.simpleNoiseSettings.baseRoughness = Random.Range(simpleBaseRoughnessMinMax.x, simpleBaseRoughnessMinMax.y);
-        noiseSettings0.simpleNoiseSettings.roughness = Random.Range(simpleRoughnessMinMax.x, simpleRoughnessMinMax.y);
-        noiseSettings0.simpleNoiseSettings.centre = new Vector3(Random.Range(simpleCentreMinMax.x, simpleCentreMinMax.y), Random.Range(simpleCentreMinMax.x, simpleCentreMinMax.y), Random.Range(simpleCentreMinMax.x, simpleCentreMinMax.y));
+        noiseSettings0.simpleNoiseSettings.strength = Random.Range(s_Strength.x, s_Strength.y);
+        noiseSettings0.simpleNoiseSettings.baseRoughness = Random.Range(s_BaseRoughness.x, s_BaseRoughness.y);
+        noiseSettings0.simpleNoiseSettings.roughness = Random.Range(s_Roughness.x, s_Roughness.y);
+        noiseSettings0.simpleNoiseSettings.centre = new Vector3(Random.Range(s_Centre.x, s_Centre.y), Random.Range(s_Centre.x, s_Centre.y), Random.Range(s_Centre.x, s_Centre.y));
 
 
         //Ridgid noise RNG (highly unoptimised)
-        noiseSettings1.ridgidNoiseSettings.strength = Random.Range(ridgidStrengthMinMax.x, ridgidStrengthMinMax.y);
-        noiseSettings1.ridgidNoiseSettings.baseRoughness = Random.Range(ridgidBaseRoughnessMinMax.x, ridgidBaseRoughnessMinMax.y);
-        noiseSettings1.ridgidNoiseSettings.roughness = Random.Range(ridgidRoughnessMinMax.x, ridgidRoughnessMinMax.y);
-        noiseSettings1.ridgidNoiseSettings.persistence = Random.Range(ridgidPersistenceMinMax.x, ridgidPersistenceMinMax.y);
-        noiseSettings1.ridgidNoiseSettings.centre = new Vector3(Random.Range(ridgidCentreMinMax.x, ridgidCentreMinMax.y), Random.Range(ridgidCentreMinMax.x, ridgidCentreMinMax.y), Random.Range(ridgidCentreMinMax.x, ridgidCentreMinMax.y));
-        noiseSettings1.ridgidNoiseSettings.weightMultiplier = Random.Range(ridgidWeightMultiplierMinMax.x, ridgidWeightMultiplierMinMax.y);
-        noiseSettings1.ridgidNoiseSettings.minValue = Random.Range(ridgidMinimalValueMinMax.x, ridgidMinimalValueMinMax.y);
+        noiseSettings1.ridgidNoiseSettings.strength = Random.Range(r_Strength.x, r_Strength.y);
+        noiseSettings1.ridgidNoiseSettings.baseRoughness = Random.Range(r_BaseRoughness.x, r_BaseRoughness.y);
+        noiseSettings1.ridgidNoiseSettings.roughness = Random.Range(r_Roughness.x, r_Roughness.y);
+        noiseSettings1.ridgidNoiseSettings.persistence = Random.Range(r_Persistence.x, r_Persistence.y);
+        noiseSettings1.ridgidNoiseSettings.centre = new Vector3(Random.Range(r_Centre.x, r_Centre.y), Random.Range(r_Centre.x, r_Centre.y), Random.Range(r_Centre.x, r_Centre.y));
+        noiseSettings1.ridgidNoiseSettings.weightMultiplier = Random.Range(r_WeightMultiplier.x, r_WeightMultiplier.y);
+        noiseSettings1.ridgidNoiseSettings.minValue = Random.Range(r_MinimalValue.x, r_MinimalValue.y);
 
 
         planet.GeneratePlanet();
@@ -132,15 +130,15 @@ public class RNG : MonoBehaviour
     {
 
         
-        Earthlike = 0,
+        Earth = 0,
 
         Arctic = 1,
 
-        Venuslike = 2
+        Venus = 2
 
     };
 
-    public bool autoRegenerateOnPresetModification = false;
+    public bool autoRegenerate = false;
     public bool lockNoiseUpdate = true;
 
     
@@ -156,12 +154,12 @@ public class RNG : MonoBehaviour
             if (i == (int)presetSelector)
             {
                 presets[i].ApplyTo(colour);
-                if (autoRegenerateOnPresetModification && !lockNoiseUpdate)
+                if (autoRegenerate && !lockNoiseUpdate)
                 {
                     Randomise();
                     Debug.Log("Planet Generated");
                 }
-                else if (!autoRegenerateOnPresetModification && lockNoiseUpdate)
+                else if (!autoRegenerate && lockNoiseUpdate)
                 {
                     planet.GenerateColours();
                     Debug.Log("Colours updated");

@@ -20,13 +20,13 @@ public class CustomRNGEditor : Editor
         if (GUILayout.Button("Apply Preset", GUILayout.Height(30)))
         {
             script.ApplyPreset();
-            if (script.autoRegenerateOnPresetModification == false)
+            if (script.autoRegenerate == false)
             {
             Debug.Log("Preset applied. Please re-generate");
             }
         }
 
-        if (GUILayout.Button("Generate planet", GUILayout.Height(30)))
+        if (GUILayout.Button("Generate planet (playmode)", GUILayout.Height(30)))
         {
             if (script.lockNoiseUpdate)
             {
